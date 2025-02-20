@@ -64,3 +64,6 @@ Car stops or auto-navigates around obstacles.
 - ✅ Self-Navigation Mode (Future Upgrade)
 Uses Reinforcement Learning (Q-learning/DQN) to follow a pre-defined path.
 Line following (IR sensors) or GPS tracking (for real wheelchair).
+
+
+

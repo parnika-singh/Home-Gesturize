@@ -1,6 +1,19 @@
-# Hand-Gesture-Based Home Automation System using ESP32 and MediaPipe
+# A Hand-Gesture-Based Home Automation System
 
-A simplified home automation prototype that uses real-time hand gesture recognition to control electrical appliances like lights and fans. This project is built using **ESP32**, **Python**, **OpenCV**, and **MediaPipe** for gesture detection, and a simple web server to trigger appliance control via HTTP.
+## Project Description
+GestureDomotics is a smart home automation prototype that enables users to control household appliances using simple hand gestures. Leveraging computer vision and machine learning, this system translates real-time hand movements into actionable commands, providing a contactless and intuitive interface for device control.
+
+At its core, the system consists of an ESP32 microcontroller, ESP32-CAM, and a set of output devices (LEDs and a motor) that simulate real-world appliances like lights and fans. The ESP32-CAM captures live video, which is processed using MediaPipe and OpenCV in Python to detect hand gestures. These gestures are classified using a lightweight KNN model, and corresponding commands are sent to the ESP32 via HTTP to toggle the appliances.
+
+While this implementation uses LEDs and a small DC motor for simplicity and safety in a simulation environment, it is fully extendable to real-world home environments. By integrating relay modules, one can control actual electrical devices such as room lights, fans, or other appliances.
+
+---
+
+## 🏡 Real-Life Applications:
+- Smart homes with touchless control
+- Automation systems for elderly or disabled individuals
+- Hands-free appliance control in hospitals or clean environments
+- Voice-free operation in noisy or restricted areas
 
 ---
 

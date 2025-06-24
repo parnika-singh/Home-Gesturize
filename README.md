@@ -1,69 +1,93 @@
-# Major-Project
-## Project Concept: AI-Powered Smart Car for Gesture & Voice-Controlled Wheelchair
-This project involves building a toy car prototype that can be controlled using hand gestures, voice commands, or autonomous navigation, demonstrating its potential for smart wheelchairs.
+# Hand-Gesture-Based Home Automation System using ESP32 and MediaPipe
 
-### Key Features & Technologies:
-- Hand Gesture Control:
-Uses ESP32-CAM + OpenCV + Mediapipe to recognize hand gestures.
-Different gestures (e.g., forward, backward, stop) control the car's movement.
-- Voice-Controlled Navigation:
-Uses ESP32 + Google Speech-to-Text API or Edge AI (Vosk, Picovoice).
-Recognizes voice commands like "Move forward," "Turn left," etc.
-- Obstacle Avoidance & Safety Mechanism:
-Uses Ultrasonic Sensors / LiDAR to detect obstacles and stop automatically.
-Can integrate AI-based object detection (YOLO) for recognizing humans/objects.
-- IoT-Based Remote Control:
-Connects with a mobile app or web dashboard (Firebase, MQTT, Blynk) for remote control.
-- Self-Navigation Mode:
-Uses Reinforcement Learning (Q-learning, Deep Q-Networks) for autonomous movement.
-Can follow a pre-defined path using color detection (line following).
-### Future Expansion into a Wheelchair:
-The same technology can be scaled up for real wheelchairs with motorized movement and smart safety features.
-Can add fall detection, emergency alerts, and AI-based obstacle recognition.
+A simplified home automation prototype that uses real-time hand gesture recognition to control electrical appliances like lights and fans. This project is built using **ESP32**, **Python**, **OpenCV**, and **MediaPipe** for gesture detection, and a simple web server to trigger appliance control via HTTP.
 
-----------------------------------------------------------------------------------------------------------------------------------
-## 🚗 Architecture Overview
-The system consists of ESP32 for control, computer vision for gesture recognition, and voice commands for movement.
+---
 
-### 🔹 System Workflow:
-- Input: Gesture & Voice Commands
-Camera captures hand gestures → ESP32 processes via OpenCV + Mediapipe.
-Microphone captures voice → Converted into text using Edge AI Speech Recognition.
-- Processing & Decision Making
-ESP32 receives gesture/voice input, processes commands, and sends signals to motor drivers.
-If no input is given, the system enters autonomous mode and follows a predefined path or avoids obstacles.
-- Output: Car Movement & Obstacle Detection
-Motor drivers control the wheels based on input.
-Ultrasonic sensors detect obstacles → ESP32 automatically stops or reroutes.
-### 🛠️ Component List:
-- 1️⃣ Microcontroller & Processing Unit
-ESP32-CAM → For gesture recognition & image processing.
-ESP32 DevKit V1 → Main control board for motor and sensor processing.
-- 2️⃣ Input Components
-OV2640 Camera Module → Captures hand gestures.
-MEMS Microphone (INMP441) → Captures voice commands.
-Ultrasonic Sensors (HC-SR04) → Detects obstacles.
-IR Sensors (Optional) → For line-following capability.
-- 3️⃣ Output Components
-L298N Motor Driver → Controls DC motors.
-Two DC Motors → Moves the toy car.
-OLED Display (Optional) → Displays detected gestures/commands.
-- 4️⃣ Power & Connectivity
-Li-ion Battery (7.4V 18650) → Powers the entire system.
-WiFi/Bluetooth Module (Built-in ESP32) → For IoT connectivity (Firebase/MQTT).
-### 📡 Features & Functionality
-- ✅ Gesture-Controlled Mode:
-Recognizes 5-6 hand gestures to move forward, left, right, stop, etc.
-Uses Mediapipe Hand Tracking + ESP32-CAM for real-time control.
-- ✅ Voice-Controlled Mode:
-Uses speech-to-text conversion for command execution.
-Works offline using Vosk/Picovoice AI models.
-- ✅ Obstacle Avoidance Mode:
-Ultrasonic sensors detect objects within 10-15 cm range.
-Car stops or auto-navigates around obstacles.
-- ✅ Self-Navigation Mode (Future Upgrade)
-Uses Reinforcement Learning (Q-learning/DQN) to follow a pre-defined path.
-Line following (IR sensors) or GPS tracking (for real wheelchair).
+## 🚀 Features
+
+- ✋ Real-time hand gesture detection using a webcam
+- 📡 Communication between PC and ESP32 over Wi-Fi
+- 💡 Control LEDs and a DC motor through gestures
+- 🧠 Custom logic to detect finger positions using MediaPipe
+- 🔁 Easily extendable to real-life applications using relay modules
+
+---
+
+## 🔧 Hardware Used
+
+| Component            | Quantity | Description                                           |
+|----------------------|----------|-------------------------------------------------------|
+| ESP32 Development Board | 1        | Handles GPIO control and Wi-Fi communication          |
+| LEDs (Red, Green, Blue) | 3        | Represent home appliances (bulb, tube light, etc.)    |
+| DC Motor              | 1        | Simulates a ceiling fan                               |
+| Resistors (220Ω)      | 3        | For limiting current to LEDs                          |
+| Jumper Wires          | As needed | For connections                                       |
+| Breadboard            | 1        | For prototyping                                       |
 
 
+### ✅ Real-life Implementation Tip: 
+Replace LEDs with actual home lights and the DC motor with a fan. Use a 4-channel relay module to safely switch AC appliances.
+
+---
+
+## 💻 Software Requirements
+
+- Arduino IDE (for ESP32)
+- Python 3.9 or 3.10
+- OpenCV
+- MediaPipe
+- Requests
+
+Install Python dependencies:
+
+```bash
+pip install opencv-python mediapipe requests
+```
+
+---
+
+## 🧠 How It Works
+
+- ESP32 is programmed to expose HTTP endpoints for each device (LED/motor).
+- Python script reads webcam feed and detects hand landmarks using MediaPipe.
+- Gesture logic identifies raised fingers and sends a command to the ESP32.
+- ESP32 receives the command and toggles the corresponding GPIO pin to control the device.
+
+---
+
+## 🎯 Gesture to Appliance Mapping
+| Gesture   | Action                          |
+| --------- | ------------------------------- |
+| Thumb Up  | Turn ON Red LED (Appliance 1)   |
+| Index Up  | Turn ON Green LED (Appliance 2) |
+| Middle Up | Turn ON Blue LED (Appliance 3)  |
+| All Down  | Turn OFF all appliances         |
+| Fist      | Turn ON the motor               |
+
+---
+
+## 🌐 ESP32 Endpoints
+Example HTTP endpoints:
+| /led/thumb/on | /led/thumb/off |
+| /led/index/on | /led/index/off |
+| /led/middle/on | /led/middle/off |
+
+You can test them in your browser or through the Python script.
+
+---
+
+## 🛠 Real-Life Application
+This project can be directly implemented in real homes:
+- Use relay modules instead of direct GPIO-LED connection to control high-voltage appliances.
+- Replace LEDs with AC lights, and the small DC motor with a ceiling fan.
+- Maintain gesture control from a safe distance using only hand movements.
+⚠️ Note: Proper insulation and relay ratings must be ensured while working with AC appliances.
+
+---
+
+## Screenshot
+
+
+---
 
